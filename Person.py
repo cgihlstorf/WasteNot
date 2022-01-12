@@ -16,28 +16,28 @@ class Person:
         # initializing variables
 
         # dictionary of all food entered (all time), key: food, value: servings 
-        self.all_time_dict = {"apple":6, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
+        self.all_time_dict = {"apple":0, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
 
         # dictionary of all food entered by year, key: food, value: servings 
-        self.year_dict = {"apple":6, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
+        self.year_dict = {"apple":0, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
 
         # dictionary of food entered by month, resets at beginning of the month, key: food, value: servings 
-        self.month_dict = {"apple":6, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
+        self.month_dict = {"apple":0, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
 
         # dictionary of food entered by week, key: food, value: servings 
-        self.week_dict = {"apple":6, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
+        self.week_dict = {"apple":0, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
 
         # dictionary of food entered by day, key: food, value: servings 
-        self.day_dict = {"apple":6, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
+        self.day_dict = {"apple":0, "banana":0, "grape":0, "strawberry":0, "blueberries":0, "raspberries":0, "blackberries":0, "lemon":0, "lime":0, "cucumber":0, "tomato":0, "lettuce":0, "celery":0, "broccoli":0, "potato":0, "sweet potato":0, "cherry tomato":0, "avocado":0, "onion":0, "mango":0}
 
         # dictionary for daily/weekly/monthly/yearly/overall carbon footprints
-        self.co2_dict = {"day":432, "week":432, "month":432, "year":432, "all-time":432}
+        self.co2_dict = {"day":0, "week":0, "month":0, "year":0, "all-time":0}
 
         #dictionary for carbon footprints per single food/serving
         self.food_footprints_dict = {"apple":72, "banana":104, "grape":22, "strawberry":26, "blueberries":486, "raspberries":437, "blackberries":486, "lemon":133, "lime":95, "cucumber":154, "tomato":232, "lettuce":885, "celery":42, "broccoli":43, "potato":280, "sweet potato":146, "cherry tomato":33, "avocado":408, "onion":179, "mango":880}
 
         # holds previous login day so we know how to update dictionaries
-        self.prev_login_day = date(2022, 1, 3)
+        self.prev_login_day = date(1700, 1, 1)
 
     # finish
     def input_function(self, food_item, amount):
