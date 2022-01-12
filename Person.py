@@ -70,7 +70,7 @@ class Person:
         #    ((date.day == self.prev_login_day.day) and (date.weekday = self.prev_login_day.weekday()) and date.month != prev_login_day.month) or
 
         #hang on, this might be easier and I think it covers all the bases:
-        if compare_day(self) == False:
+        if self.compare_day() == False:
             self.reset_dict(self.day_dict)
 
         # update the most recent login time to today  
