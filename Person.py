@@ -27,11 +27,14 @@ class Person:
         # dictionary of food entered by day, key: food, value: servings 
         self.day_dict = {}
 
-        # dictionary of carbon footprint by food (1 serving), key: food, value: carbon footprint (gCO2e)
-        self.co2_dict = {}
+        # dictionary for daily/weekly/monthly/yearly/overall carbon footprints
+        self.co2_dict = {"day":0, "week":0, "month":0, "year":0, "all-time":0}
 
         # dictionary of dictionaries of dictionaries of dictionaries
         self.archive_dict = {}
+
+        #dictionary for carbon footprints per single food/serving
+        self.food_footprints_dict = {"apple":72, "banana":104, "grape":22, "strawberry":26, "cucumber":154, "tomato":232, "broccoli":43, "potato":280, "sweet potato":146, "cherry tomato":33}
 
         self.prev_login_day = date.today()
 
@@ -45,6 +48,8 @@ class Person:
 
         else:
             self.all_time_dict[food_item] += amount
+            self.food_footprints_dict["all-time"] = self.calculate_footprint(amount, self.food_footprints_dict["all-time"])
+
         
         # building year dict
         if self.prev_login_day.year != date.year:
@@ -52,6 +57,7 @@ class Person:
             self.year_dict[food_item] = amount
         else:
             self.year_dict[food_item] += amount
+            self.food_footprints_dict["year"] = self.calculate_footprint(amount, self.food_footprints_dict["year"])
 
         # building month dict
         if self.prev_login_day.month != date.month or self.prev_login_day.month == date.month and self.prev_login_day.year != date.year:
@@ -60,6 +66,7 @@ class Person:
 
         else:
             self.month_dict[food_item] += amount
+            self.food_footprints_dict["month"] = self.calculate_footprint(amount, self.food_footprints_dict["month"])
 
         #building week dict
         if date.weekday == 0 and self.prev_login_day != 0: #reset if it's the first of any week and it's your first time logging in that day
@@ -68,6 +75,7 @@ class Person:
         
         else:
             self.week_dict[food_item] += amount
+            self.food_footprints_dict["week"] = self.calculate_footprint(amount, self.food_footprints_dict["week"])
         
         # building day dict
         ##if date.day > self.prev_login_day.day and date.weekday() == self.prev_login_day.weekday() or 
@@ -87,7 +95,8 @@ class Person:
             self.day_dict[food_item] = amount
         else:
             self.day_dict[food_item] += amount
-
+            self.food_footprints_dict["day"] = self.calculate_footprint(amount, self.food_footprints_dict["day"])
+    
 
         # update the most recent login time to today  
         # keep near end (outside of all loops) to update previous login day to current day
@@ -106,54 +115,12 @@ class Person:
             return False
 
 
+    
     # takes in two dictionaries, outputs number (gCO2e)
-    def calculate_footprint(self, time):
-        time = input("Which time dictionary do you want to use?")
-
-        carbonFootprint = 0
-
-        food_list = []
-
-        if time == "month":
-
-            food_list = self.month_dict.keys()
-
-            for food in food_list:
-
-                carbonFootprint = carbonFootprint + self.month_dict[food] * self.co2_dict[food]
-
-        elif time == "year":
-
-            food_list = self.year_dict.keys()
-
-            for food in food_list:
-                carbonFootprint = carbonFootprint + self.year_dict[food] * self.co2_dict[food]
-        
-        elif time == "week":
-
-            food_list = self.week_dict.keys()
-
-            for food in food_list:
-
-                carbonFootprint = carbonFootprint + self.week_dict[food] * self.co2_dict[food]
-        
-        elif time == "day":
-
-            food_list = self.day_dict.keys()
-
-            for food in food_list:
-
-                carbonFootprint = carbonFootprint + self.day_dict[food] * self.co2_dict[food]
-
-        else:
-
-            food_list = self.all_time_dict.keys()
-
-            for food in food_list:
-
-                carbonFootprint = carbonFootprint + self.all_time_dict[food] * self.co2_dict[food]
-
-        return carbonFootprint
+    def calculate_footprint(self, amount, unit_val):
+        #food_footprints_dict = single serving
+        #co2_dict = cumulative total
+        return amount * unit_val
         
 
 
