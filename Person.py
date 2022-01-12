@@ -45,27 +45,44 @@ class Person:
         if self.prev_login_day.year != date.year:
             self.reset_dict(self.year_dict)
             self.year_dict[food_item] = amount
-        
+
         # building month dict
         if self.prev_login_day.month != date.month or self.prev_login_day.month == date.month and self.prev_login_day.year != date.year:
             self.reset_dict(self.month_dict)
             self.month_dict[food_item] = amount
 
-        # NEED: week dict
+        #building week dict
+        if date.weekday == 0 and self.prev_login_day != 0: #reset if it's the first of any week and it's your first time logging in that day
+            self.reset_dict(self.week_dict)
+        
 
 
         # building day dict
         ##if date.day > self.prev_login_day.day and date.weekday() == self.prev_login_day.weekday() or 
 
 
+        #if the day is different from the last day you logged in but the day of the week are the same, OR
+        #if the day is the same numbered day as the day you logged in but the day of the week is different, OR
+        #if the day and day of the week are the same but the month is different, OR
+        #if the day and the day of the week and the month are the same but the year is different 
+        # if ((date.day != self.prev_login_day.day) and (date.weekday() == self.prev_login_day.weekday())) or 
+        #    ((date.day == self.prev_login_day.day) and (date.weekday != self.prev_login_day.weekday())) or
+        #    ((date.day == self.prev_login_day.day) and (date.weekday = self.prev_login_day.weekday()) and date.month != prev_login_day.month) or
+
+        #hang on, this might be easier and I think it covers all the bases:
+        if compare_day(self) == False:
+            self.reset_dict(self.day_dict)
+
+        # update the most recent login time to today  
         # keep near end (outside of all loops) to update previous login day to current day
         self.prev_login_day = date.today()
         
 
     def reset_dict(self, input_dict):
-        input_dict.clear
+        input_dict.clear()
 
     
+    #I don's actually think this is needed
     def compare_day(self):
         if str(self.prev_login_day) == str(date.today()):
             return True
@@ -129,4 +146,4 @@ def main():
     print(caroline.prev_login_day)
 
 
-main()
+#main()
