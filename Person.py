@@ -1,7 +1,6 @@
 """
 Tri-Co Hackathon Group 1: Person Class File
-Authors:
-Description:
+Description: File that contains food data for one user. Contains functions that allows user to input foods and calculate the footprint of food based on the serving.
 """
 
 from datetime import date
