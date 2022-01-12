@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="cover">
+  <div id="cover-caption">
+      <div id="container" class="container">
+          <div class="row">
+              <div class="col-sm-10 offset-sm-1 text-center">
+                  <h1 class="display-3">Enter Food Item</h1>
+                  <div class="info-form">
+                      <form action="/home/thankyou" class="form-inline justify-content-center">
+                          <div class="form-group">
+                              <label class="sr-only">select a Food Item: </label>
+                              <div class="dropdown">
+                                <div class="row">
+                                  <div class="col-12">
+                                    <button class="btn btn-secondary dropdown-toggle dropbtn" id="displayDD" name="food" type="button" onclick="myfunction('listfood')" >
+                                      Select Food 
+                                    </button>
+                                    <input type="text" name="food" class="form-control" placeholder="1g">
+                                    <div id="listfood" class="dropdown-content" style="color: black;"> </div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          <br>
+                          <div class="form-group">
+                              <label class="sr-only"> Quantity</label>
+                              <input type="text" name="quantity" class="form-control" placeholder="1g">
+                          </div>
+                          <br>
+                          <button type="submit" class="btn btn-success "> Submit</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+  {% endblock %}
