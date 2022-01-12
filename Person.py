@@ -47,14 +47,15 @@ class Person:
             self.year_dict[food_item] = amount
         
         # building month dict
-        if self.prev_login_day.month != date.month or self.prev_login_day.month == date.month and self.prev_login_day.year != datetime.date.year:
+        if self.prev_login_day.month != date.month or self.prev_login_day.month == date.month and self.prev_login_day.year != date.year:
             self.reset_dict(self.month_dict)
             self.month_dict[food_item] = amount
 
         # NEED: week dict
 
+
         # building day dict
-        if date.day > self.prev_login_day.day and date.weekday() == self.prev_login_day.weekday() or 
+        ##if date.day > self.prev_login_day.day and date.weekday() == self.prev_login_day.weekday() or 
 
 
         # keep near end (outside of all loops) to update previous login day to current day
@@ -73,8 +74,54 @@ class Person:
 
 
     # takes in two dictionaries, outputs number (gCO2e)
-    def calculate_footprint(self):
-        pass
+    def calculate_footprint(self, time):
+        time = input("Which time dictionary do you want to use?")
+
+        carbonFootprint = 0
+
+        list = {}
+
+        if time == "month":
+
+            list = self.month_dict.keys()
+
+            for food in list:
+
+                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+
+        elif time == "year":
+
+            list = self.year_dict.keys()
+
+            for food in list:
+                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+        
+        elif time == "week":
+
+            list = self.year_dict.keys()
+
+            for food in list:
+
+                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+        
+        elif time == "day":
+
+            list = self.day_dict.keys()
+
+            for food in list:
+
+                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+
+        else:
+
+            list = self.all_time_dict.keys()
+
+            for food in list:
+
+                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+
+        return carbonFootprint
+        
 
 
 def main():
