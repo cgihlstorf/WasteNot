@@ -4,6 +4,8 @@ Person Class
 
 from datetime import date
 
+#person login
+
 class Person:
 
     def __init__(self):
@@ -41,22 +43,32 @@ class Person:
         if food_item not in self.all_time_dict.keys():
             self.all_time_dict[food_item] = amount
 
+        else:
+            self.all_time_dict[food_item] += amount
+        
         # building year dict
         if self.prev_login_day.year != date.year:
             self.reset_dict(self.year_dict)
             self.year_dict[food_item] = amount
+        else:
+            self.year_dict[food_item] += amount
 
         # building month dict
         if self.prev_login_day.month != date.month or self.prev_login_day.month == date.month and self.prev_login_day.year != date.year:
             self.reset_dict(self.month_dict)
             self.month_dict[food_item] = amount
 
+        else:
+            self.month_dict[food_item] += amount
+
         #building week dict
         if date.weekday == 0 and self.prev_login_day != 0: #reset if it's the first of any week and it's your first time logging in that day
             self.reset_dict(self.week_dict)
+            self.week_dict[food_item] = amount
         
-
-
+        else:
+            self.week_dict[food_item] += amount
+        
         # building day dict
         ##if date.day > self.prev_login_day.day and date.weekday() == self.prev_login_day.weekday() or 
 
@@ -72,6 +84,10 @@ class Person:
         #hang on, this might be easier and I think it covers all the bases:
         if self.compare_day() == False:
             self.reset_dict(self.day_dict)
+            self.day_dict[food_item] = amount
+        else:
+            self.day_dict[food_item] += amount
+
 
         # update the most recent login time to today  
         # keep near end (outside of all loops) to update previous login day to current day
@@ -96,46 +112,46 @@ class Person:
 
         carbonFootprint = 0
 
-        list = {}
+        food_list = []
 
         if time == "month":
 
-            list = self.month_dict.keys()
+            food_list = self.month_dict.keys()
 
-            for food in list:
+            for food in food_list:
 
-                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+                carbonFootprint = carbonFootprint + self.month_dict[food] * self.co2_dict[food]
 
         elif time == "year":
 
-            list = self.year_dict.keys()
+            food_list = self.year_dict.keys()
 
-            for food in list:
-                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+            for food in food_list:
+                carbonFootprint = carbonFootprint + self.year_dict[food] * self.co2_dict[food]
         
         elif time == "week":
 
-            list = self.year_dict.keys()
+            food_list = self.week_dict.keys()
 
-            for food in list:
+            for food in food_list:
 
-                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+                carbonFootprint = carbonFootprint + self.week_dict[food] * self.co2_dict[food]
         
         elif time == "day":
 
-            list = self.day_dict.keys()
+            food_list = self.day_dict.keys()
 
-            for food in list:
+            for food in food_list:
 
-                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+                carbonFootprint = carbonFootprint + self.day_dict[food] * self.co2_dict[food]
 
         else:
 
-            list = self.all_time_dict.keys()
+            food_list = self.all_time_dict.keys()
 
-            for food in list:
+            for food in food_list:
 
-                carbonFootprint = self.month.dict[food] * self.co2_dict[food]
+                carbonFootprint = carbonFootprint + self.all_time_dict[food] * self.co2_dict[food]
 
         return carbonFootprint
         
