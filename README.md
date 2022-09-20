@@ -33,7 +33,7 @@ Presentation link - https://docs.google.com/presentation/d/1Ij3J7DJTUNIGp0zBftsy
 
 ## Next Steps
 
-- App Delployment 
+- App Deployment 
 - One corner case we would like to improve upon is being able to keep someone's weekly progress if December 31st of one year and January 1st of the other year are in the same week. For example, if December 31st is a Wednesday and January 1st is a Thursday, they are in the same week.
 - We want to allow user to add food items if they are not in our database.
 - Provide Login 
